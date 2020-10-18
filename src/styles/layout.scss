@@ -1,0 +1,55 @@
+#app{
+  .app-wrapper {
+    height: 100%;
+    .el-aside{
+      width: $sideBarWidth !important;
+    }
+  }
+
+  .sidebar-container{
+    height: 100%;
+    background-color: $menuBg;
+    font-size: 0;
+    overflow: hidden;
+    .slidebar-logo-box{
+      height: $logoHeight;
+      border-bottom: 1px solid lighten($menuBg, 8);
+      overflow: hidden;
+      a{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 0 20px;
+        overflow: hidden;
+      }
+      .logo{
+        width: auto;
+        height: 30px;
+        max-height: 100%;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      .title{
+        font-weight: 600;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+    .el-scrollbar{
+      height: 100%;
+    }
+    &.has-logo{
+      .el-scrollbar{
+        height: calc(100% - #{$logoHeight});
+      }
+    }
+    .el-scrollbar__wrap{
+      overflow-x: hidden !important;
+    }
+    .el-menu{
+      width: 100%;
+      border: none;
+    }
+  }
+}

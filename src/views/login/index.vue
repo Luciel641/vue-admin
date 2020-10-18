@@ -26,19 +26,15 @@
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Login',
-  components: {
-    HelloWorld
-  },
+  components: {},
   data() {
     const validaUsername = (rules, value, callback) => {
-      if (value) {
-        callback()
-      } else {
+      if (value != 'admin') {
         callback(new Error('请输入正确的用户名'))
+      } else {
+        callback()
       }
     }
     const validaPassword = (rules, value, callback) => {
@@ -50,8 +46,8 @@ export default {
     }
     return {
       form: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       loginRules: {
         username: [
@@ -60,7 +56,8 @@ export default {
         password: [
           { require: true, trigger: 'blur', validator: validaPassword }
         ]
-      }
+      },
+      redirect: undefined
     }
   },
   methods: {
@@ -68,7 +65,11 @@ export default {
       this.$refs.loginForm.validate(valid => {
         console.log('valid: ', valid)
         if (valid) {
-          console.log('验证通过')
+          this.$message({
+            message: `登录成功！欢迎您，${this.form.username}`,
+            type: 'success'
+          })
+          this.$router.push({ path: this.redirect || '/' })
         } else {
           this.$message.error('表单验证失败')
         }
