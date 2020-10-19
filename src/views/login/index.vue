@@ -18,7 +18,11 @@
           <i slot="prefix" class="el-icon-lock"></i>
         </el-input>
       </el-form-item>
-      <el-button class="block" type="primary" @click="handleLogin"
+      <el-button
+        class="block"
+        type="primary"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -26,24 +30,11 @@
 </template>
 
 <script>
+console.log('port:', process.env)
 export default {
   name: 'Login',
   components: {},
   data() {
-    const validaUsername = (rules, value, callback) => {
-      if (value != 'admin') {
-        callback(new Error('请输入正确的用户名'))
-      } else {
-        callback()
-      }
-    }
-    const validaPassword = (rules, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能少于六位数字'))
-      } else {
-        callback()
-      }
-    }
     return {
       form: {
         username: 'admin',
@@ -51,27 +42,30 @@ export default {
       },
       loginRules: {
         username: [
-          { require: true, trigger: 'blur', validator: validaUsername }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [
-          { require: true, trigger: 'blur', validator: validaPassword }
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, message: '密码不能少于六位数字', trigger: 'blur' }
         ]
       },
-      redirect: undefined
+      redirect: undefined, // 登录成功后的跳转地址
+      loading: false // 按钮加载提示
     }
   },
   methods: {
     handleLogin() {
+      // 验证表单格式
       this.$refs.loginForm.validate(valid => {
-        console.log('valid: ', valid)
         if (valid) {
-          this.$message({
-            message: `登录成功！欢迎您，${this.form.username}`,
-            type: 'success'
-          })
-          this.$router.push({ path: this.redirect || '/' })
+          this.loading = true
+          // this.$message({
+          //   message: `登录成功！欢迎您，${this.form.username}`,
+          //   type: 'success'
+          // })
+          // this.$router.push({ path: this.redirect || '/' })
         } else {
-          this.$message.error('表单验证失败')
+          return false
         }
       })
     }

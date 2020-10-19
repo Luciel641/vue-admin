@@ -17,6 +17,6 @@ module.exports = {
         args: 'none'
       }
     ],
-    'vue/no-unused-components': 1,
+    'vue/no-unused-components': 1
   }
 }
