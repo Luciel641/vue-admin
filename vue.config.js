@@ -11,7 +11,8 @@ module.exports = {
     overlay: {
       warning: false,
       error: true
-    }
+    },
+    before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     resolve: {
