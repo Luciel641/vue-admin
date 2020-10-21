@@ -30,7 +30,6 @@
 </template>
 
 <script>
-console.log('port:', process.env)
 export default {
   name: 'Login',
   components: {},
@@ -59,6 +58,9 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          this.$store.dispatch('user/login', this.loginForm).then(() => {
+            console.log('登录成功')
+          })
           // this.$message({
           //   message: `登录成功！欢迎您，${this.form.username}`,
           //   type: 'success'

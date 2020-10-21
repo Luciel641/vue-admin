@@ -7,14 +7,17 @@ Vue.use(Vuex)
 // 引入modules目录下所有的js文件
 // 参考：https://webpack.js.org/guides/dependency-management/#requirecontext
 const modulesFiles = require.context('./modules', true, /\.js$/)
-console.log('modules files: ', modulesFiles.keys())
-// const modules = modulesFiles.keys().reduce(()=>{
+// console.log('modules files: ', modulesFiles)
+const modules = modulesFiles.keys().reduce((modules, modulePath) => {
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+  const value = modulesFiles(modulePath)
+  modules[moduleName] = value.default
+  return modules
+}, {})
 
-// })
-
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+const store = new Vuex.Store({
+  modules,
+  getters
 })
+
+export default store
