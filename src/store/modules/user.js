@@ -7,11 +7,13 @@ const mutations = {}
 const actions = {
   // 登录
   login({ commit }, formData) {
+    console.log('store data:', formData)
     return new Promise((resolve, reject) => {
       login(formData)
         .then(res => {
-          console.log('登录结果：', res)
-          resolve()
+          let { data } = res
+          console.log('登录结果：', data)
+          resolve(data)
         })
         .catch(error => {
           reject(error)

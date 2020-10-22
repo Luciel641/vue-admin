@@ -58,13 +58,21 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            console.log('登录成功')
-          })
-          // this.$message({
-          //   message: `登录成功！欢迎您，${this.form.username}`,
-          //   type: 'success'
-          // })
+          this.$store
+            .dispatch('user/login', this.form)
+            .then(() => {
+              this.loading = false
+              this.$message({
+                message: `登录成功！欢迎您，${this.form.username}`,
+                type: 'success'
+              })
+              this.$router.push(this.$route.query.redirect || '/')
+            })
+            .catch(error => {
+              this.loading = false
+              console.log('login error', error)
+            })
+
           // this.$router.push({ path: this.redirect || '/' })
         } else {
           return false
