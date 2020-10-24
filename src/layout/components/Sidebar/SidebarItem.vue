@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu-item>菜单{{ item }}</el-menu-item>
+    <el-menu-item>{{ item.meta.title }}</el-menu-item>
   </div>
 </template>
 
@@ -9,8 +9,12 @@ export default {
   name: 'SidebarItem',
   props: {
     item: {
-      type: Number,
-      default: 0
+      type: Object,
+      required: true
+    },
+    basePath: {
+      type: String,
+      default: ''
     }
   }
 }

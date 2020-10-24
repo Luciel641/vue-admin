@@ -48,11 +48,26 @@ export default {
           { min: 6, message: '密码不能少于六位数字', trigger: 'blur' }
         ]
       },
+      loading: false, // 按钮加载提示
       redirect: undefined, // 登录成功后的跳转地址
-      loading: false // 按钮加载提示
+      otherQuery: {} // 其他请求参数
+    }
+  },
+  watch: {
+    // 重定向时携带之前页面的参数，以免参数丢失
+    $route: {
+      handler: function(route) {
+        const query = route.query
+        if (query) {
+          this.redirect = query.redirect
+          this.otherQuery = this.getOtherQuery(query)
+        }
+      },
+      immediate: true
     }
   },
   methods: {
+    // 登录
     handleLogin() {
       // 验证表单格式
       this.$refs.loginForm.validate(valid => {
@@ -63,21 +78,29 @@ export default {
             .then(() => {
               this.loading = false
               this.$message({
-                message: `登录成功！欢迎您，${this.form.username}`,
+                message: `登录成功`,
                 type: 'success'
               })
+              console.log('即将跳转： ', this.$route.query.redirect)
               this.$router.push(this.$route.query.redirect || '/')
             })
             .catch(error => {
               this.loading = false
               console.log('login error', error)
             })
-
-          // this.$router.push({ path: this.redirect || '/' })
         } else {
           return false
         }
       })
+    },
+    // 获取其他请求参数
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur]
+        }
+        return acc
+      }, {})
     }
   }
 }

@@ -11,13 +11,19 @@
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
       >
-        <sidebar-item v-for="(item, index) in 20" :key="index" :item="index" />
+        <sidebar-item
+          v-for="route in routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
@@ -25,6 +31,7 @@ export default {
   name: 'Sidebar',
   components: { SidebarItem },
   computed: {
+    ...mapGetters(['routes', 'sidebarOpened']),
     showLogo() {
       return true
     },

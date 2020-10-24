@@ -29,7 +29,7 @@ const navTest = {
           path: 'nav2-2',
           name: 'Nav2-2',
           component: () => import('@/views/nav-test/nav2/nav2-2'),
-          meta: { title: '菜单2-2' },
+          meta: { title: '菜单2-2【会员可见】', roles: ['admin'] },
           redirect: '/nav-test/nav2/nav2-2/nav2-2-1',
           children: [
             {

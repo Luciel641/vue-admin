@@ -10,16 +10,16 @@ const users = {
 }
 const userinfo = {
   'admin-token': {
-    roles: ['admin'],
-    intro: '当前身份为超级管理员',
+    name: 'Super Admin',
     avatar: '@/assets/avatar/avatar_admin.jpg',
-    name: 'Super Admin'
+    roles: ['admin'],
+    intro: '当前身份为超级管理员'
   },
   'user-token': {
-    roles: ['user'],
-    intro: '当前身份为普通用户',
+    name: 'Normal User',
     avatar: '@/assets/avatar/avatar_admin.jpg',
-    name: 'Normal User'
+    roles: ['user'],
+    intro: '当前身份为普通用户'
   }
 }
 
@@ -59,7 +59,7 @@ module.exports = [
       if (!info) {
         return {
           code: 1,
-          msg: '登录失败，无法获取用户信息'
+          msg: '获取用户信息失败'
         }
       }
       return {

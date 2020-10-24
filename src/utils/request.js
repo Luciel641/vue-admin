@@ -1,5 +1,6 @@
 'use strict'
 import axios from 'axios'
+import store from '@/store'
 import { Message } from 'element-ui'
 
 // Full config:  https://github.com/axios/axios#request-config
@@ -12,18 +13,20 @@ let config = {
   timeout: 5 * 1000 // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }
-console.log('env:', process.env)
-console.log('baseUrl:', config.baseURL)
 
 const request = axios.create(config)
 
 // 请求拦截器
 request.interceptors.request.use(
-  function(config) {
+  config => {
     // Do something before request is sent
+    const token = store.getters.token
+    if (token) {
+      config.headers.Authorization = token // 请求头部添加token
+    }
     return config
   },
-  function(error) {
+  error => {
     // Do something with request error
     return Promise.reject(error)
   }
@@ -31,26 +34,25 @@ request.interceptors.request.use(
 // 响应拦截器
 // Add a response interceptor
 request.interceptors.response.use(
-  function(response) {
+  response => {
     console.log('response:', response)
     // 获取后台返回的数据，如果需要获取http头部和状态信息，直接返回response
     const res = response.data
     // 当前项目定义code为0表示请求成功
     if (res.code !== 0) {
-      Message({
-        message: res.msg || 'Error',
-        type: 'error'
-      })
+      if (res.msg) {
+        Message.error({
+          message: res.msg || 'Error'
+        })
+      }
       return Promise.reject(new Error(res.msg || 'Error'))
     }
     return res
   },
-  function(error) {
+  error => {
     console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
+    Message.error({
+      message: error.message
     })
     return Promise.reject(error)
   }
