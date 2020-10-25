@@ -50,6 +50,23 @@
     .el-menu{
       width: 100%;
       border: none;
+      a{
+        display: inline-block;
+        width: 100%;
+      }
+      i{
+        color: inherit;
+      }
+    }
+    .el-submenu .el-submenu .el-submenu__title,
+    .el-submenu .el-menu-item{
+      background-color: $subMenuBg !important;
+          &:hover{
+            background-color: $subMenuHover !important;
+          }
+    }
+    .is-active>.el-submenu__title {
+      color: $subMenuActiveText !important;
     }
   }
 }

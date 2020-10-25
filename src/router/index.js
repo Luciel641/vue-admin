@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
-import { Message } from 'element-ui'
 
 // Vue-Router 3.1.0及以上版本会导致下面的（next({ ...to, replace: true })）报错
 // https://github.com/vuejs/vue-router/issues/2881
@@ -68,7 +67,7 @@ export const constantRoutes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '首页' }
+        meta: { title: '首页', icon: 'el-icon-s-home' }
       }
     ]
   }

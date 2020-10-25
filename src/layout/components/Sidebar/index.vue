@@ -8,8 +8,12 @@
     </div>
     <el-scrollbar>
       <el-menu
+        mode="vertical"
+        :collapse="false"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
+        :active-text-color="variables.menuActiveText"
+        :default-active="activeMenu"
       >
         <sidebar-item
           v-for="route in routes"
@@ -37,6 +41,9 @@ export default {
     },
     variables() {
       return variables
+    },
+    activeMenu() {
+      return this.$route.path
     }
   }
 }

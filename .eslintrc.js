@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
+  extends: ['plugin:vue/recommended', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
     parser: 'babel-eslint'
   },
@@ -17,6 +17,7 @@ module.exports = {
         args: 'none'
       }
     ],
+    'no-useless-escape': 0,
     'vue/no-unused-components': 1
   }
 }
