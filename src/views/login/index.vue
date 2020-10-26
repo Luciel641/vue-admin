@@ -79,7 +79,8 @@ export default {
               this.loading = false
               this.$message({
                 message: `登录成功`,
-                type: 'success'
+                type: 'success',
+                duration: 1500
               })
               console.log('即将跳转： ', this.$route.query.redirect)
               this.$router.push(this.$route.query.redirect || '/')

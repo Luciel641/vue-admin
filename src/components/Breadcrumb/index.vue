@@ -1,7 +1,11 @@
 <template>
   <el-breadcrumb>
-    <el-breadcrumb-item>首页</el-breadcrumb-item>
-    <el-breadcrumb-item>面包屑</el-breadcrumb-item>
+    <el-breadcrumb-item
+      v-for="item in breadList"
+      :key="item.path"
+      :to="item.redirect ? '' : item.path"
+      >{{ item.meta.title }}</el-breadcrumb-item
+    >
   </el-breadcrumb>
 </template>
 
@@ -24,6 +28,20 @@ export default {
   methods: {
     getBreadCrumb() {
       console.log('route: ', this.$route)
+      let matched = this.$route.matched.filter(
+        item => item.meta && item.meta.title
+      )
+      if (!this.isDashboard(matched[0])) {
+        matched = [{ path: '/dashboard', meta: { title: '首页' } }, ...matched]
+      }
+      this.breadList = matched.filter(item => item.meta.breadcrumb !== false)
+    },
+    isDashboard(route) {
+      const name = route && route.name
+      if (!name) {
+        return false
+      }
+      return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
     }
   }
 }

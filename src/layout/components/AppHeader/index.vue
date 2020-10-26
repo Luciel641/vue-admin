@@ -14,6 +14,7 @@
         <div class="search"></div>
         <div class="screen-full"></div>
         <div class="avatar"></div>
+        <el-button @click="logout">退出</el-button>
       </div>
     </div>
     <!-- 标签栏 -->
@@ -37,6 +38,9 @@ export default {
     toggleSidebar() {
       this.$store.commit('app/TOGGLE_SIDEBAR')
       console.log('togglesidebar')
+    },
+    logout() {
+      this.$store.dispatch('user/logout', this.$route.fullPath)
     }
   }
 }
