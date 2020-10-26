@@ -3,17 +3,18 @@
     <div v-if="showLogo" class="slidebar-logo-box">
       <router-link to="/">
         <img class="logo" src="@/assets/logo.png" alt="" />
-        <span class="title">Vue Admin</span>
+        <span v-if="sidebar.opened" class="title">Vue Admin</span>
       </router-link>
     </div>
     <el-scrollbar>
       <el-menu
         mode="vertical"
-        :collapse="false"
+        :collapse="!sidebar.opened"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :active-text-color="variables.menuActiveText"
         :default-active="activeMenu"
+        :collapse-transition="false"
       >
         <sidebar-item
           v-for="route in routes"
@@ -35,7 +36,7 @@ export default {
   name: 'Sidebar',
   components: { SidebarItem },
   computed: {
-    ...mapGetters(['routes', 'sidebarOpened']),
+    ...mapGetters(['routes', 'sidebar']),
     showLogo() {
       return true
     },

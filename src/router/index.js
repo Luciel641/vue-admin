@@ -99,8 +99,8 @@ export function resetRouter() {
 
 // 导航守卫
 router.beforeEach(async (to, from, next) => {
-  console.log('to: ', to)
-  console.log('from: ', from)
+  // console.log('to: ', to)
+  // console.log('from: ', from)
   // 设置页面标题
   document.title = getPageTitle(to.meta.title)
   // 判断是否已登录
@@ -113,13 +113,13 @@ router.beforeEach(async (to, from, next) => {
       // 判断是否已存在用户对应的角色
       const hasRoles = store.getters.roles.length > 0
       if (hasRoles) {
-        console.log('已登录 已存在角色')
+        // console.log('已登录 已存在角色')
         next()
       } else {
-        console.log('已登录 未获取用户信息')
+        // console.log('已登录 未获取用户信息')
         try {
           const { roles } = await store.dispatch('user/getInfo')
-          console.log('roles: ', roles)
+          // console.log('roles: ', roles)
           // 根据角色生成对应的路由表
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',
@@ -131,7 +131,7 @@ router.beforeEach(async (to, from, next) => {
 
           // 使用 replace 访问路由，不会在 history 中留下记录，
           // 防止回退到 login 页面
-          console.log('next ...to replace true ', to)
+          // console.log('next ...to replace true ', to)
           next({ ...to, replace: true })
         } catch (error) {
           console.error(error)

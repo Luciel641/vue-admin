@@ -11,7 +11,6 @@ const getDefaultState = () => {
 }
 
 const state = getDefaultState()
-console.log('state token ', state.token)
 
 const mutations = {
   // 重置state数据
@@ -40,7 +39,7 @@ const actions = {
       login(formData)
         .then(res => {
           const { data } = res
-          console.log('登录结果：', data)
+          // console.log('登录结果：', data)
           commit('SET_TOKEN', data.token)
           resolve(data)
         })

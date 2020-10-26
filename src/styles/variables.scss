@@ -2,8 +2,10 @@
 $bg-gray: #f0f3f4;
 
 // 头部 header
-$headerHeight: 60px;
-$logoHeight: $headerHeight;
+$navHeight: 50px;
+$tagViewHeight: 30px;
+$headerHeight: $navHeight + $tagViewHeight;
+$logoHeight: $navHeight;
 
 // 侧边栏 Sidebar
 // $menuText: #bfcbd9;

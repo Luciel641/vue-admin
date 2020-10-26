@@ -12,19 +12,14 @@
           :index="resolvePath(childItem.path)"
         >
           <i v-if="childItem.meta.icon" :class="childItem.meta.icon"></i>
-          <span>{{ childItem.meta.title }}</span>
+          <span slot="title">{{ childItem.meta.title }}</span>
         </el-menu-item>
       </app-link>
     </template>
-    <el-submenu
-      v-else
-      :index="resolvePath(item.path)"
-      :data-index="resolvePath(item.path)"
-      popper-append-to-body
-    >
+    <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <i v-if="item.meta.icon" :class="item.meta.icon"></i>
-        <span>{{ item.meta.title }}</span>
+        <span slot="title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -86,16 +81,11 @@ export default {
     // 判断是否为外链，是的话返回外链，否则返回拼接后的路径
     resolvePath(routePath) {
       if (isExternal(routePath)) {
-        console.log('type1 ', typeof routePath)
         return routePath
       }
       if (isExternal(this.basePath)) {
-        console.log('type2 ', typeof this.basePath)
         return this.basePath
       }
-      console.log('routePath ', routePath, ' ', typeof routePath)
-      console.log('basepath ', this.basePath, ' ', typeof this.basePath)
-      console.log('type3 ', typeof path.resolve(this.basePath, routePath))
       return path.resolve(this.basePath, routePath)
     }
   }

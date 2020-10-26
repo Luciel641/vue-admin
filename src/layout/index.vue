@@ -1,5 +1,5 @@
 <template>
-  <el-container class="app-wrapper">
+  <el-container :class="wrapClass" class="app-wrapper">
     <el-aside>
       <sidebar class="sidebar-container" />
     </el-aside>
@@ -17,11 +17,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { Sidebar, AppHeader, AppMain } from './components'
 
 export default {
   name: 'Layout',
-  components: { Sidebar, AppHeader, AppMain }
+  components: { Sidebar, AppHeader, AppMain },
+  computed: {
+    ...mapGetters(['sidebar']),
+    wrapClass() {
+      return {
+        'sidebar-open': this.sidebar.opened,
+        'sidebar-close': !this.sidebar.opened,
+        whithoutAnimation: this.sidebar.whithoutAnimation
+      }
+    }
+  }
 }
 </script>
 

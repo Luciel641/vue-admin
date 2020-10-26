@@ -1,16 +1,19 @@
 const state = {
   // 侧边栏的展开状态
-  sidebarOpened: sessionStorage.getItem('sidebarOpened')
-    ? !!+sessionStorage.getItem('sidebarOpened')
-    : true
+  sidebar: {
+    opened: sessionStorage.getItem('sidebar_opened')
+      ? !!+sessionStorage.getItem('sidebar_opened')
+      : true,
+    whithoutAnimation: false
+  }
 }
 
 const mutations = {
   TOGGLE_SIDEBAR(state, opened) {
     if (opened) {
-      state.sidebarOpened = !!+opened
+      state.sidebar.opened = !!+opened
     } else {
-      state.sidebarOpened = !state.sidebarOpened
+      state.sidebar.opened = !state.sidebar.opened
     }
   }
 }
