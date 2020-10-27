@@ -12,7 +12,8 @@ module.exports = {
       warning: false,
       error: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'), // mock-server 服务器文件路径
+    contentBase: resolve('./mock/public') // mock-server 服务器静态资源路径
   },
   configureWebpack: {
     resolve: {

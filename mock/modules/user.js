@@ -11,13 +11,13 @@ const users = {
 const userinfo = {
   'admin-token': {
     name: 'Super Admin',
-    avatar: '@/assets/avatar/avatar_admin.jpg',
+    avatar: '/avatar/avatar_admin.jpg',
     roles: ['admin'],
     intro: '当前身份为超级管理员'
   },
   'user-token': {
     name: 'Normal User',
-    avatar: '@/assets/avatar/avatar_admin.jpg',
+    avatar: '/avatar/avatar_admin.jpg',
     roles: ['user'],
     intro: '当前身份为普通用户'
   }
