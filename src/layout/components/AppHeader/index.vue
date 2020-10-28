@@ -20,7 +20,7 @@
           <!-- <div class="notice"></div> -->
           <!-- 全屏 -->
           <li class="full-screen">
-            <i class="el-icon-full-screen"></i>
+            <screen-full></screen-full>
           </li>
           <!-- 用户 -->
           <li>
@@ -38,12 +38,13 @@
 import { mapGetters } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
+import ScreenFull from '@/components/ScreenFull'
 import UserDropdown from '@/components/UserDropdown'
 import TagsView from './TagsView'
 
 export default {
   name: 'AppHeader',
-  components: { Hamburger, Breadcrumb, UserDropdown, TagsView },
+  components: { Hamburger, Breadcrumb, ScreenFull, UserDropdown, TagsView },
   computed: {
     ...mapGetters(['sidebar'])
   },
@@ -83,7 +84,9 @@ export default {
       }
     }
     .full-screen {
-      padding: 0 8px;
+      ::v-deep .full-screen-btn {
+        padding: 0 8px;
+      }
     }
     .header-user {
       height: 100%;
