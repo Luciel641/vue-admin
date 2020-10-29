@@ -23,7 +23,7 @@ const navTest = {
           path: 'nav2-1',
           name: 'Nav2-1',
           component: () => import('@/views/nav-test/nav2/nav2-1'),
-          meta: { title: '菜单2-1' }
+          meta: { title: '菜单2-1', affix: true }
         },
         {
           path: 'nav2-2',

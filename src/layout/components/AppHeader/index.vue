@@ -10,7 +10,7 @@
           @toggleClick="toggleSidebar"
         />
         <!-- 面包屑导航 -->
-        <breadcrumb class="breadcrumb-wrap" />
+        <breadcrumb class="breadcrumb-wrap hidden-sm-and-down" />
       </div>
       <div class="nav-r">
         <ul class="nav-ul">

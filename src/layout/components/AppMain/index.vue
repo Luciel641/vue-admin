@@ -1,14 +1,20 @@
 <template>
   <section class="app-main">
-    <transition>
-      <router-view />
+    <transition name="fade-transform">
+      <keep-alive :include="cachedViews">
+        <router-view />
+      </keep-alive>
     </transition>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'AppMain'
+  name: 'AppMain',
+  computed: {
+    ...mapGetters(['cachedViews'])
+  }
 }
 </script>
 

@@ -24,6 +24,7 @@ const whiteList = ['/login'] // 白名单，不需要登录验证的页面路径
 
 /**
  * 路由相关属性说明
+ * name: keep-alive匹配的是组件的name，所以需保持和组件的name一致且唯一（不能有重复name）
  * hidden: true                   当设置为true时，不在sidebar侧边栏中显示（默认：false）
  * meta: {
     roles: ['admin', 'user']    控制页面的角色权限
@@ -67,7 +68,7 @@ export const constantRoutes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '首页', icon: 'el-icon-s-home' }
+        meta: { title: '首页', icon: 'el-icon-s-home', affix: true }
       }
     ]
   }
