@@ -1,6 +1,6 @@
 <template>
   <div class="tags-view">
-    <el-scrollbar>
+    <scrollbar-x>
       <div class="tags">
         <el-tag
           v-for="tag in visitedViews"
@@ -17,16 +17,18 @@
           >
         </el-tag>
       </div>
-    </el-scrollbar>
+    </scrollbar-x>
   </div>
 </template>
 
 <script>
 import path from 'path'
 import { mapGetters } from 'vuex'
+import ScrollbarX from './ScrollbarX'
 
 export default {
   name: 'TagsView',
+  components: { ScrollbarX },
   data() {
     return {
       affixTags: []
@@ -140,22 +142,9 @@ export default {
       margin-left: 5px;
     }
   }
-  .el-scrollbar {
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    ::v-deep {
-      .el-scrollbar__bar {
-        bottom: 0px;
-      }
-      .el-scrollbar__wrap {
-      }
-    }
-    .tags {
-      display: inline-block;
-      padding: 0 10px;
-    }
+  .tags {
+    display: inline-block;
+    padding: 0 10px;
   }
 }
 </style>
