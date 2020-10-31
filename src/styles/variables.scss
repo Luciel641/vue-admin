@@ -14,7 +14,7 @@ $menuActiveText: #4f94d4;
 $subMenuActiveText: #f4f4f5; // 子菜单有选中项时，菜单名字的字体颜色
 
 $menuBg: #3a3f51;
-$menuHover: #2e3241;
+$menuHover: darken($menuBg, 3);
 
 $subMenuBg: darken($menuBg, 5);
 $subMenuHover: darken($menuHover, 5);

@@ -50,8 +50,7 @@ export default {
   },
   methods: {
     toggleSidebar() {
-      this.$store.commit('app/TOGGLE_SIDEBAR')
-      console.log('togglesidebar')
+      this.$store.dispatch('app/toggleSidebar')
     }
   }
 }

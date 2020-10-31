@@ -24,13 +24,14 @@ export default {
   beforeDestroy() {},
   methods: {
     // 参考：https://github.com/PanJiaChen/vue-element-admin/blob/1bc2e5c1980b2e5131164849f66dd4f03216806d/src/layout/components/TagsView/ScrollPane.vue#L29
+    // 调整了滚动方向和平滑滚动
     handleScroll(e) {
       const eventDelta = e.wheelDelta || -e.deltaY * 40
       const $scrollWrapper = this.scrollWrapper
       // $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
-      // 调整滚动效果
       $scrollWrapper.scroll({
-        left: $scrollWrapper.scrollLeft - eventDelta / 4,
+        // left: $scrollWrapper.scrollLeft - eventDelta / 4,
+        left: $scrollWrapper.scrollLeft - eventDelta / 2,
         behavior: 'smooth'
       })
     }

@@ -67,13 +67,27 @@
         color: inherit;
       }
     }
-    .el-submenu .el-submenu .el-submenu__title,
-    .el-submenu .el-menu-item{
-      background-color: $subMenuBg !important;
-          &:hover{
-            background-color: $subMenuHover !important;
-          }
+    .el-menu{
+      .el-menu-item,
+      .el-submenu .el-submenu__title{
+        &:hover{
+          background-color: $menuHover !important;
+        }
+      }
     }
+    .el-submenu{
+      .el-submenu .el-submenu__title,
+      .el-menu .el-menu-item{
+        background-color: $subMenuBg !important;
+        &:hover{
+          background-color: $subMenuHover !important;
+        }
+      }
+      .el-menu-item.is-active{
+        background-color: $subMenuHover !important;
+      }
+    }
+    
     .is-active>.el-submenu__title {
       color: $subMenuActiveText !important;
     }
@@ -100,15 +114,38 @@
           }
         }
       }
+      .is-active{
+        &.el-submenu .el-submenu__title,
+        &.el-menu-item{
+          background-color: $menuHover !important;
+        }
+      }
     }
   }
 
-  .without-animation{
+  // 屏幕小于992时
+  .mobile{
     .sidebar-container{
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1001;
+      width: $sideBarWidth !important;
+      transition: transform .3s;
+    }
+    // 关闭侧边栏
+    &.sidebar-close{
+      .sidebar-container{
+        transform: translate3d(-$sideBarWidth, 0, 0);
+      }
+    }
+  }
+
+  .withoutAnimation {
+    .sidebar-container {
       transition: none;
     }
   }
-
-  // 
   
 }
