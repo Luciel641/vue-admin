@@ -2,10 +2,10 @@
   <div class="tags-view">
     <scrollbar-x>
       <div class="tags">
-        <el-tag
+        <!-- <el-tag
           v-for="tag in visitedViews"
           :key="tag.path"
-          size="small"
+          size="medium"
           :effect="isActive(tag) ? 'dark' : 'light'"
           :closable="!tag.meta.affix"
           @close="closeSelectedTags(tag)"
@@ -15,7 +15,23 @@
             :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
             >{{ tag.title }}</router-link
           >
-        </el-tag>
+        </el-tag> -->
+        <router-link
+          v-for="tag in visitedViews"
+          :key="tag.path"
+          ref="tag"
+          :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
+          class="link"
+        >
+          <el-tag
+            size="medium"
+            :effect="isActive(tag) ? 'dark' : 'light'"
+            :closable="!tag.meta.affix"
+            @close.prevent="closeSelectedTags(tag)"
+          >
+            {{ tag.title }}
+          </el-tag>
+        </router-link>
       </div>
     </scrollbar-x>
   </div>
@@ -51,6 +67,9 @@ export default {
     this.addTags()
   },
   methods: {
+    print(val) {
+      console.log(val)
+    },
     // 判断标签是否激活
     isActive(route) {
       return route.path === this.$route.path
@@ -133,9 +152,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .tags-view {
-  height: 30px;
-  line-height: 30px;
+  height: $tagViewHeight;
+  line-height: $tagViewHeight;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   .el-tag {
     + .el-tag {
@@ -145,6 +166,12 @@ export default {
   .tags {
     display: inline-block;
     padding: 0 10px;
+    .link {
+      display: inline-block;
+      + .link {
+        margin-left: 5px;
+      }
+    }
   }
 }
 </style>

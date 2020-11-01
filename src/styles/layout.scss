@@ -2,13 +2,11 @@
   .app-wrapper {
     height: 100%;
     .el-aside{
-      // width: $sideBarWidth !important;
       width: auto !important;
     }
     .el-header{
       height: auto !important;
       padding: 0;
-      // box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
     }
   }
   // 侧边栏
@@ -83,9 +81,9 @@
           background-color: $subMenuHover !important;
         }
       }
-      .el-menu-item.is-active{
-        background-color: $subMenuHover !important;
-      }
+      // .el-menu-item.is-active{
+      //   background-color: $subMenuHover !important;
+      // }
     }
     
     .is-active>.el-submenu__title {

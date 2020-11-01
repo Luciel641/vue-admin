@@ -3,7 +3,7 @@ $bg-gray: #f0f3f4;
 
 // 头部 header
 $navHeight: 50px;
-$tagViewHeight: 30px;
+$tagViewHeight: 36px;
 $headerHeight: $navHeight + $tagViewHeight;
 $logoHeight: $navHeight;
 
@@ -16,8 +16,8 @@ $subMenuActiveText: #f4f4f5; // 子菜单有选中项时，菜单名字的字体
 $menuBg: #3a3f51;
 $menuHover: darken($menuBg, 3);
 
-$subMenuBg: darken($menuBg, 5);
-$subMenuHover: darken($menuHover, 5);
+$subMenuBg: darken($menuBg, 3);
+$subMenuHover: darken($subMenuBg, 3);
 
 $sideBarWidth: 210px;
 

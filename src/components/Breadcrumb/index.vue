@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     getBreadCrumb() {
-      console.log('route: ', this.$route)
       let matched = this.$route.matched.filter(
         item => item.meta && item.meta.title
       )
