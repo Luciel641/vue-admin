@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({ showSpinner: false }) // 进度条设置（不需要加载时右边的转圈效果）
 
 // Vue-Router 3.1.0及以上版本会导致下面的（next({ ...to, replace: true })）报错
 // https://github.com/vuejs/vue-router/issues/2881
@@ -100,8 +104,9 @@ export function resetRouter() {
 
 // 导航守卫
 router.beforeEach(async (to, from, next) => {
-  // console.log('to: ', to)
-  // console.log('from: ', from)
+  // 跳转时开始加载进度条
+  NProgress.start()
+
   // 设置页面标题
   document.title = getPageTitle(to.meta.title)
   // 判断是否已登录
@@ -110,17 +115,15 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       // 已经登录了的话跳转到登录后重新跳转回首页
       next({ path: '/' })
+      NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
       // 判断是否已存在用户对应的角色
       const hasRoles = store.getters.roles.length > 0
       if (hasRoles) {
-        // console.log('已登录 已存在角色')
         next()
       } else {
-        // console.log('已登录 未获取用户信息')
         try {
           const { roles } = await store.dispatch('user/getInfo')
-          // console.log('roles: ', roles)
           // 根据角色生成对应的路由表
           const accessRoutes = await store.dispatch(
             'permission/generateRoutes',
@@ -132,15 +135,10 @@ router.beforeEach(async (to, from, next) => {
 
           // 使用 replace 访问路由，不会在 history 中留下记录，
           // 防止回退到 login 页面
-          // console.log('next ...to replace true ', to)
           next({ ...to, replace: true })
         } catch (error) {
-          console.error(error)
           // 获取用户信息错误，移除token，重新登录
           await store.dispatch('user/logout', to.fullPath)
-          // Message.error({
-          //   message: error || '验证失败，请重新登录'
-          // })
         }
       }
     }
@@ -158,8 +156,14 @@ router.beforeEach(async (to, from, next) => {
           redirect: to.fullPath
         }
       })
+      NProgress.done()
     }
   }
+})
+
+router.afterEach(() => {
+  // 进度加载完成
+  NProgress.done()
 })
 
 export default router
