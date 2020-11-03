@@ -20,7 +20,8 @@ Vue.use(VueRouter)
 /* Layout 布局 */
 import Layout from '@/layout'
 
-/* 测试导航菜单 */
+/* 路由模块 */
+import componentsRouter from './modules/components' // 组件
 import NavTest from './modules/nav-test'
 
 import getPageTitle from '@/utils/get-page-title'
@@ -31,6 +32,7 @@ const whiteList = ['/login'] // 白名单，不需要登录验证的页面路径
  * name: keep-alive匹配的是组件的name，所以需保持和组件的name一致且唯一（不能有重复name）
  * redirect: noRedirect           设置为noRedirect时，面包屑不能点击跳转
  * hidden: true                   当设置为true时，不在sidebar侧边栏中显示（默认：false）
+ * alwaysShow: true               当设置为true时，总是在菜单显示，不设置时只有当子路由超过一个时才会显示
  * meta: {
     roles: ['admin', 'user']      控制页面的角色权限
     title: 'title'                sidebar侧边栏和面包屑导航标题
@@ -89,6 +91,7 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
+  componentsRouter,
   {
     path: '/error',
     name: 'ErrorPages',

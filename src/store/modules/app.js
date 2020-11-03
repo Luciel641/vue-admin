@@ -11,7 +11,6 @@ const state = {
 
 const mutations = {
   TOGGLE_SIDEBAR(state, status) {
-    console.log('toggle sidebar !!!')
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
     if (state.sidebar.opened) {
@@ -32,7 +31,6 @@ const mutations = {
 
 const actions = {
   toggleSidebar({ commit }) {
-    console.log('toggle sidebar !!')
     commit('TOGGLE_SIDEBAR')
   },
   closeSidebar({ commit }, { withoutAnimation }) {

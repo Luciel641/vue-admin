@@ -1,11 +1,9 @@
 <template>
   <el-breadcrumb>
-    <el-breadcrumb-item
-      v-for="item in breadList"
-      :key="item.path"
-      :to="item.path"
-      >{{ item.meta.title }}</el-breadcrumb-item
-    >
+    <el-breadcrumb-item v-for="item in breadList" :key="item.path">
+      <span v-if="item.redirect === 'noRedirect'">{{ item.meta.title }}</span>
+      <router-link v-else :to="item.path">{{ item.meta.title }}</router-link>
+    </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 

@@ -3,7 +3,8 @@
     <template
       v-if="
         hasOnlyChild(item.children, item) &&
-          (!childItem.children || noShowingChild)
+          (!childItem.children || noShowingChild) &&
+          !item.alwaysShow
       "
     >
       <app-link :to="resolvePath(childItem.path)">
