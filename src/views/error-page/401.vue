@@ -2,8 +2,8 @@
   <div class="err-wrapper">
     <div class="err-container">
       <div class="err-msg">
-        <div class="err-num">404</div>
-        <div class="err-tips">抱歉，你访问的页面不存在</div>
+        <div class="err-num">401</div>
+        <div class="err-tips">抱歉，你无权访问该页面</div>
       </div>
       <div class="err-btns">
         <router-link to="/">
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Page404'
+  name: 'Page401'
 }
 </script>
 

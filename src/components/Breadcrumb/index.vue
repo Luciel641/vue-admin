@@ -3,7 +3,7 @@
     <el-breadcrumb-item
       v-for="item in breadList"
       :key="item.path"
-      :to="item.redirect ? '' : item.path"
+      :to="item.path"
       >{{ item.meta.title }}</el-breadcrumb-item
     >
   </el-breadcrumb>
@@ -18,6 +18,7 @@ export default {
     }
   },
   watch: {
+    // 监听路由变动，更新导航
     $route: {
       handler(route) {
         this.getBreadCrumb()
@@ -27,12 +28,15 @@ export default {
   },
   methods: {
     getBreadCrumb() {
+      // 从路由记录中过滤出有标题的路由
       let matched = this.$route.matched.filter(
         item => item.meta && item.meta.title
       )
+      // 默认由首页开始
       if (!this.isDashboard(matched[0])) {
         matched = [{ path: '/dashboard', meta: { title: '首页' } }, ...matched]
       }
+      // 过滤掉不需要在面包屑导航上显示的路由
       this.breadList = matched.filter(item => item.meta.breadcrumb !== false)
     },
     isDashboard(route) {

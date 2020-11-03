@@ -29,9 +29,10 @@ const whiteList = ['/login'] // 白名单，不需要登录验证的页面路径
 /**
  * 路由相关属性说明
  * name: keep-alive匹配的是组件的name，所以需保持和组件的name一致且唯一（不能有重复name）
+ * redirect: noRedirect           设置为noRedirect时，面包屑不能点击跳转
  * hidden: true                   当设置为true时，不在sidebar侧边栏中显示（默认：false）
  * meta: {
-    roles: ['admin', 'user']    控制页面的角色权限
+    roles: ['admin', 'user']      控制页面的角色权限
     title: 'title'                sidebar侧边栏和面包屑导航标题
     icon: 'el-icon-x'             侧边栏图标（使用element-ui组件库的图标）
     noCache: true                 当设置为true时不缓存该路由页面（默认：false）
@@ -56,10 +57,15 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/401',
+    name: '401',
+    component: () => import('@/views/error-page/401.vue'),
+    hidden: true
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('@/views/error-page/404.vue'),
-    meta: { title: '404 Not Found!' },
     hidden: true
   },
   {
@@ -82,7 +88,32 @@ export const constantRoutes = [
  * 动态添加路由 asyncRoutes
  * 需要根据用户角色动态加载的路由
  */
-export const asyncRoutes = [NavTest]
+export const asyncRoutes = [
+  {
+    path: '/error',
+    name: 'ErrorPages',
+    component: Layout,
+    redirect: 'noRedirect',
+    meta: { title: '错误页面', icon: 'el-icon-s-release' },
+    children: [
+      {
+        path: '401',
+        name: 'Page401',
+        component: () => import('@/views/error-page/401'),
+        meta: { title: '401', noCache: true }
+      },
+      {
+        path: '404',
+        name: 'Page404',
+        component: () => import('@/views/error-page/404'),
+        meta: { title: '404', noCache: true }
+      }
+    ]
+  },
+  NavTest,
+  // 404 页面必须放在最后面！！！
+  { path: '*', redirect: '/404', hidden: true }
+]
 
 const createRouter = () =>
   new VueRouter({
