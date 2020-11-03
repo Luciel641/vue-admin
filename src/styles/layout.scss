@@ -72,6 +72,9 @@
           background-color: $menuHover !important;
         }
       }
+      .el-menu-item.is-active{
+        background-color: $menuHover !important;
+      }
     }
     .el-submenu{
       .el-submenu .el-submenu__title,
@@ -81,9 +84,9 @@
           background-color: $subMenuHover !important;
         }
       }
-      // .el-menu-item.is-active{
-      //   background-color: $subMenuHover !important;
-      // }
+      .el-menu-item.is-active{
+        background-color: $subMenuHover !important;
+      }
     }
     
     .is-active>.el-submenu__title {

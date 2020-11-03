@@ -16,7 +16,7 @@ $subMenuActiveText: #f4f4f5; // 子菜单有选中项时，菜单名字的字体
 $menuBg: #3a3f51;
 $menuHover: darken($menuBg, 3);
 
-$subMenuBg: darken($menuBg, 3);
+$subMenuBg: darken($menuBg, 5);
 $subMenuHover: darken($subMenuBg, 3);
 
 $sideBarWidth: 210px;
