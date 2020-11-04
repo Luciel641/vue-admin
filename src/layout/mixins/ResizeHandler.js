@@ -1,7 +1,8 @@
 import store from '@/store'
 
 const { body } = document
-const WIDTH = 992
+const WIDTH = 768
+const autoToggleWidth = 992
 
 export default {
   watch: {
@@ -31,13 +32,24 @@ export default {
       const rect = body.getBoundingClientRect()
       return rect.width - 1 < WIDTH
     },
+    $_autoToggle() {
+      const rect = body.getBoundingClientRect()
+      if (rect.width > autoToggleWidth && !store.getters.sidebar.opened) {
+        store.dispatch('app/toggleSidebar', { withoutAnimation: false })
+      } else if (rect.width < autoToggleWidth && store.getters.sidebar.opened) {
+        store.dispatch('app/closeSidebar', { withoutAnimation: false })
+      }
+    },
     $_resizeHandler() {
+      // 仅在页面显示时处理
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
         if (isMobile) {
           store.dispatch('app/closeSidebar', { withoutAnimation: true })
+        } else {
+          this.$_autoToggle()
         }
       }
     }
