@@ -13,6 +13,11 @@ const componentsRouter = {
       name: 'RichTextEditor',
       component: () => import('@/views/rich-text-editor'),
       meta: { title: '富文本编辑器' }
+    },
+    {
+      path: 'file-upload',
+      name: 'FileUpload',
+      meta: { title: '文件上传' }
     }
   ]
 }

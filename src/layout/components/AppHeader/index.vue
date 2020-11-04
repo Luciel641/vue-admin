@@ -9,6 +9,10 @@
           class="hamburger-box"
           @toggleClick="toggleSidebar"
         />
+        <!-- 刷新 -->
+        <div class="refresh-btn" @click="refresh">
+          <i class="el-icon-refresh-right"></i>
+        </div>
         <!-- 面包屑导航 -->
         <breadcrumb class="breadcrumb-wrap hidden-sm-and-down" />
       </div>
@@ -51,6 +55,12 @@ export default {
   methods: {
     toggleSidebar() {
       this.$store.dispatch('app/toggleSidebar')
+    },
+    refresh() {
+      const { fullPath } = this.$route
+      this.$router.replace({
+        path: '/redirect' + fullPath
+      })
     }
   }
 }
@@ -59,9 +69,11 @@ export default {
 <style lang="scss" scoped>
 @import '~@/styles/variables';
 .header {
+  background-color: #fff;
 }
 .navbar {
   height: $navHeight;
+  line-height: $navHeight;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .nav-l {
@@ -100,7 +112,15 @@ export default {
   float: left;
   align-items: center;
   height: 100%;
-  padding: 0 15px;
+  padding: 0 12px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+}
+.refresh-btn {
+  float: left;
+  padding: 0 12px;
+  cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.025);
   }

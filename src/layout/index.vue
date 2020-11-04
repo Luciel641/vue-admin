@@ -4,7 +4,7 @@
       <sidebar class="sidebar-container" />
     </el-aside>
 
-    <el-container>
+    <el-container class="main-container">
       <div
         v-if="device === 'mobile' && sidebar.opened"
         class="mask-bg"

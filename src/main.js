@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './router/permission' // 路由权限控制
 import '@/utils/request'
 
 import 'normalize.css/normalize.css' //  样式重置
