@@ -1,12 +1,14 @@
 const state = {
-  // 侧边栏的展开状态
+  // 侧边栏
   sidebar: {
     opened: sessionStorage.getItem('sidebar_opened')
       ? !!+sessionStorage.getItem('sidebar_opened')
       : true,
     withoutAnimation: false
   },
-  device: 'desktop'
+  device: 'desktop',
+  routerViewShow: true,
+  routerTransition: false
 }
 
 const mutations = {
@@ -38,6 +40,21 @@ const actions = {
   },
   toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)
+  },
+  // 刷新页面（用于刷新页面的数据，直接刷新页面使用跳转重定向页面的方式）
+  refresh({ dispatch, state }, { _this, transition = true }) {
+    dispatch('tagsView/delCachedView', _this.$route, { root: true }).then(
+      () => {
+        state.routerViewShow = false
+        _this.$nextTick(() => {
+          state.routerTransition = transition
+          state.routerViewShow = true
+          _this.$nextTick(() => {
+            state.routerTransition = true
+          })
+        })
+      }
+    )
   }
 }
 

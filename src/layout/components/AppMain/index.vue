@@ -1,19 +1,23 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
+    <transition :name="routerTransition ? 'fade-transform' : ''" mode="out-in">
       <keep-alive :include="cachedViews">
-        <router-view />
+        <router-view v-if="routerViewShow" />
       </keep-alive>
     </transition>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'AppMain',
   computed: {
-    ...mapGetters(['cachedViews'])
+    ...mapGetters(['cachedViews']),
+    ...mapState({
+      routerViewShow: state => state.app.routerViewShow,
+      routerTransition: state => state.app.routerTransition // 是否显示路由切换的过渡效果
+    })
   }
 }
 </script>

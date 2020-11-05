@@ -51,8 +51,8 @@
       </el-form-item>
       <el-form-item label="特殊资源" prop="resource">
         <el-radio-group v-model="ruleForm.resource">
-          <el-radio label="线上品牌商赞助"></el-radio>
-          <el-radio label="线下场地免费"></el-radio>
+          <el-radio label="1">线上品牌商赞助</el-radio>
+          <el-radio label="2">线下场地免费</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="活动形式" prop="desc">
@@ -80,7 +80,7 @@ export default {
         date2: '',
         delivery: false,
         type: [],
-        resource: '',
+        resource: '1',
         desc: ''
       },
       rules: {

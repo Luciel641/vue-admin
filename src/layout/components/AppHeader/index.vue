@@ -57,9 +57,15 @@ export default {
       this.$store.dispatch('app/toggleSidebar')
     },
     refresh() {
-      const { fullPath } = this.$route
-      this.$router.replace({
-        path: '/redirect' + fullPath
+      // 利用跳转重定向页面刷新时要先清除页面的缓存
+      const view = this.$route
+      this.$store.dispatch('tagsView/delCachedView', view).then(() => {
+        const { fullPath } = view
+        this.$nextTick(() => {
+          this.$router.replace({
+            path: '/redirect' + fullPath
+          })
+        })
       })
     }
   }
