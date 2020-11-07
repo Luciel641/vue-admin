@@ -63,7 +63,7 @@
         <el-row>
           <el-col :span="8" :xs="24">
             <el-form-item label="出发城市" prop="fromCity">
-              <el-input></el-input>
+              <city-cascader filterable />
             </el-form-item>
           </el-col>
           <el-col :span="8" :xs="24">
@@ -121,8 +121,11 @@
 </template>
 
 <script>
+import cityCascader from '@/components/CityCascader'
+
 export default {
   name: 'AdvancedForm',
+  components: { cityCascader },
   data() {
     return {
       approveList: [
