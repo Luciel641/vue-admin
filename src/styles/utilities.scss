@@ -1,0 +1,101 @@
+/* 全局通用辅助类 */
+
+// 定义内外边距，遍历0-50
+@for $i from 0 through 50 {
+  @if $i % 5 == 0 {
+    .mg-#{$i}{
+      margin: $i + px !important;
+    }
+    .pd-#{$i}{
+      padding: $i + px !important;
+    }
+    .mg-x-#{$i}{
+      margin-left: $i + px !important;
+      margin-right: $i + px !important;
+    }
+    .pd-x-#{$i}{
+      padding-left: $i + px !important;
+      padding-right: $i + px !important;
+    }
+    .mg-y-#{$i}{
+      margin-top: $i + px !important;
+      margin-bottom: $i + px !important;
+    }
+    .pd-y-#{$i}{
+      padding-top: $i + px !important;
+      padding-bottom: $i + px !important;
+    }
+    @each $shot, $long in t top, r right, b bottom, l left {
+      .mg-#{$shot}-#{$i}{
+        margin-#{$long}: $i + px !important;
+      }
+      .pd-#{$shot}-#{$i}{
+        padding-#{$long}: $i + px !important;
+      }
+    }
+  }
+}
+
+// flex
+.flex {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+.col-center {
+	align-items: center;
+}
+
+.col-top {
+	align-items: flex-start;
+}
+
+.col-bottom {
+	align-items: flex-end;
+}
+
+.row-center {
+	justify-content: center;
+}
+
+.row-left {
+	justify-content: flex-start;
+}
+
+.row-right {
+	justify-content: flex-end;
+}
+
+.row-between {
+	justify-content: space-between;
+}
+
+.row-around {
+	justify-content: space-around;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
+}

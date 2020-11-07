@@ -2,20 +2,6 @@
   <div class="tags-view">
     <scrollbar-x>
       <div class="tags">
-        <!-- <el-tag
-          v-for="tag in visitedViews"
-          :key="tag.path"
-          size="medium"
-          :effect="isActive(tag) ? 'dark' : 'light'"
-          :closable="!tag.meta.affix"
-          @close="closeSelectedTags(tag)"
-        >
-          <router-link
-            ref="tag"
-            :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-            >{{ tag.title }}</router-link
-          >
-        </el-tag> -->
         <router-link
           v-for="tag in visitedViews"
           :key="tag.path"
@@ -157,7 +143,8 @@ export default {
 .tags-view {
   height: $tagViewHeight;
   line-height: $tagViewHeight;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #d8dce5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   .el-tag {
     + .el-tag {
       margin-left: 5px;

@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import './transition.scss';
+@import './utilities.scss';
 @import './layout.scss';
 
 body,
@@ -69,15 +70,32 @@ ol, ul{
   list-style: none;
 }
 
-/* element-ui 补充 */
+/* element-ui 相关 */
 .el-button.block{
   width: 100%;
 }
 .el-form .line{
   text-align: center;
 }
+
 // 公共样式
+.page-header{
+  margin: -20px -20px 15px;
+  padding: 16px 20px;
+  background-color: #fff;
+  .title{
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  .content{
+    font-size: 14px;
+    color: #515a6e;
+  }
+}
 .page-card{
   padding: 16px;
   background-color: #fff;
+  + .page-card{
+    margin-top: 15px;
+  }
 }
