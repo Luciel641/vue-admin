@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import _ from 'lodash' // js实用工具库
+
+Vue.prototype._ = _
 
 import './router/permission' // 路由权限控制
 import '@/utils/request'

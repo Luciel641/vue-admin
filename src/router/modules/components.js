@@ -18,6 +18,11 @@ const componentsRouter = {
       path: 'file-upload',
       name: 'FileUpload',
       meta: { title: '文件上传' }
+    },
+    {
+      path: 'clipboard',
+      name: 'Clipboard',
+      meta: { title: '剪切板' }
     }
   ]
 }
