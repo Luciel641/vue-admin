@@ -2,8 +2,10 @@ const Mock = require('mockjs')
 const { param2Obj } = require('./utils')
 
 const user = require('./modules/user')
+const test = require('./modules/test')
+const upload = require('./modules/upload')
 
-const mocks = [...user]
+const mocks = [...user, ...test, ...upload]
 
 // for front mock
 // please use it cautiously, it will redefine XMLHttpRequest,

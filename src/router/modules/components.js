@@ -15,6 +15,12 @@ const componentsRouter = {
       meta: { title: '富文本编辑器' }
     },
     {
+      path: 'avatar-upload',
+      name: 'AvatarUpload',
+      component: () => import('@/views/components-demo/avatar-upload'),
+      meta: { title: '头像上传' }
+    },
+    {
       path: 'file-upload',
       name: 'FileUpload',
       meta: { title: '文件上传' }
