@@ -229,13 +229,27 @@ export default {
       advFormRules: {
         tripReason: [{ required: true, message: '请填写出差事由' }],
         contractId: [{ required: true, message: '请填写合同编号' }],
-        tripTime: [{ required: true, message: '请选择出差时间' }],
-        approve: [{ required: true, message: '请选择审批人' }],
-        fromCity: [{ required: true, message: '请选择出发城市' }],
-        goTime: [{ required: true, message: '请选择出发时间' }],
-        backTime: [{ required: true, message: '请选择返程时间' }],
-        trafficType: [{ required: true, message: '请选择交通类型' }],
-        toCity: [{ required: true, message: '请选择到达城市' }]
+        tripTime: [
+          { required: true, message: '请选择出差时间', trigger: 'change' }
+        ],
+        approve: [
+          { required: true, message: '请选择审批人', trigger: 'change' }
+        ],
+        fromCity: [
+          { required: true, message: '请选择出发城市', trigger: 'change' }
+        ],
+        goTime: [
+          { required: true, message: '请选择出发时间', trigger: 'change' }
+        ],
+        backTime: [
+          { required: true, message: '请选择返程时间', trigger: 'change' }
+        ],
+        trafficType: [
+          { required: true, message: '请选择交通类型', trigger: 'change' }
+        ],
+        toCity: [
+          { required: true, message: '请选择到达城市', trigger: 'change' }
+        ]
       },
       // 审批人
       approveList: [
@@ -329,7 +343,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('submit')
+          this.$message.success('提交成功')
         } else {
           return false
         }

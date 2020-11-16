@@ -17,7 +17,7 @@ const userinfo = {
   },
   'user-token': {
     name: 'Normal User',
-    avatar: '/avatar/avatar_admin.jpg',
+    avatar: '/avatar/avatar_user.jpg',
     roles: ['user'],
     intro: '当前身份为普通用户'
   }

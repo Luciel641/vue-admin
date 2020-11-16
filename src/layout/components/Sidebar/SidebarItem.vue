@@ -51,9 +51,10 @@ export default {
     }
   },
   data() {
-    return {
-      childItem: null
-    }
+    // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
+    // TODO: refactor with render function
+    this.childItem = null
+    return {}
   },
   methods: {
     // 判断是否仅有一个子路由

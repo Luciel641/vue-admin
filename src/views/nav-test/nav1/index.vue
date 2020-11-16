@@ -1,5 +1,5 @@
 <template>
-  <div class="className">nav1</div>
+  <div class="page-card">nav1</div>
 </template>
 
 <script>
@@ -7,4 +7,8 @@ export default {
   name: 'Nav1'
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-card {
+  border: 1px solid skyblue;
+}
+</style>

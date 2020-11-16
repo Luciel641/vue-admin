@@ -82,6 +82,7 @@ export const constantRoutes = [
     name: 'Layout',
     component: Layout,
     redirect: '/dashboard',
+    noCache: true,
     children: [
       {
         path: 'dashboard',
@@ -98,6 +99,37 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
+  {
+    path: '/admin-only',
+    component: Layout,
+    redirect: '/permission/admin-only',
+    meta: {
+      title: '仅管理员可见',
+      icon: 'el-icon-s-custom',
+      roles: ['admin']
+    }
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    meta: { title: '用户权限', icon: 'el-icon-key' },
+    redirect: 'noRedirect',
+    alwaysShow: true,
+    children: [
+      {
+        path: 'index',
+        name: 'PermissionTest',
+        component: () => import('@/views/permission-test'),
+        meta: { title: '权限测试页' }
+      },
+      {
+        path: 'admin-only',
+        name: 'AdminOnly',
+        component: () => import('@/views/permission-test/admin-only'),
+        meta: { title: '仅管理员可见', roles: ['admin'] }
+      }
+    ]
+  },
   // 组件
   componentsRouter,
   // 表单
@@ -140,6 +172,19 @@ export const asyncRoutes = [
     ]
   },
   NavTest,
+  {
+    path: '/personal',
+    component: Layout,
+    redirect: '/personal/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Personal',
+        component: () => import('@/views/personal'),
+        meta: { title: '个人中心', icon: 'el-icon-user-solid' }
+      }
+    ]
+  },
   {
     path: '/external-link',
     component: Layout,

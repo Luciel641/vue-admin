@@ -1,5 +1,5 @@
 <template>
-  <div class="className">nav2-1</div>
+  <div class="page-card">nav2-1</div>
 </template>
 
 <script>
@@ -7,4 +7,4 @@ export default {
   name: ''
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

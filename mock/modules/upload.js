@@ -8,7 +8,7 @@ module.exports = [
       return {
         code: 0,
         data: {
-          url: 'xxxx.jpg'
+          url: '/avatar/avatar_user.jpg'
         }
       }
     }

@@ -1,9 +1,5 @@
 <template>
-  <el-cascader
-    v-model="checkedValue"
-    v-bind="$props"
-    :options="city"
-  ></el-cascader>
+  <el-cascader v-bind="$props" :options="city" v-on="$listeners"></el-cascader>
 </template>
 
 <script>
@@ -22,14 +18,7 @@ export default {
   },
   data() {
     return {
-      city: [],
-      checkedValue: []
-    }
-  },
-  watch: {
-    checkedValue(val) {
-      this.$emit('input', val)
-      this.$emit('change', val)
+      city: []
     }
   },
   mounted() {

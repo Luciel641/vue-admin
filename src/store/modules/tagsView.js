@@ -31,12 +31,12 @@ const mutations = {
     index > -1 && state.cachedViews.splice(index, 1)
   },
 
-  DEL_ALL_VISITED_VIEW(state) {
+  DEL_ALL_VISITED_VIEWS(state) {
     // 保持固定标签栏不动
     const affixTags = state.visitedViews.filter(tag => tag.meta.affix)
     state.visitedViews = affixTags
   },
-  DEL_ALL_CACHED_VIEW(state) {
+  DEL_ALL_CACHED_VIEWS(state) {
     state.cachedViews = []
   },
 
