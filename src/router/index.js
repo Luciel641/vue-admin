@@ -19,6 +19,7 @@ import Layout from '@/layout'
 /* 路由模块 */
 import componentsRouter from './modules/components' // 组件
 import formRouter from './modules/form' // 表单
+import tableRouter from './modules/table' // 表格
 import NavTest from './modules/nav-test'
 
 /**
@@ -101,6 +102,8 @@ export const asyncRoutes = [
   componentsRouter,
   // 表单
   formRouter,
+  // 表格
+  tableRouter,
   // 图表
   {
     path: '/charts',
@@ -114,27 +117,6 @@ export const asyncRoutes = [
         meta: { title: '图表', icon: 'el-icon-s-marketing' }
       }
     ]
-  },
-  // 表格
-  {
-    path: '/table',
-    component: Layout,
-    redirect: '/table/index',
-    children: [
-      {
-        path: 'index',
-        name: 'Table',
-        component: () => import('@/views/table'),
-        meta: { title: '表格', icon: 'el-icon-s-grid' }
-      }
-    ]
-  },
-  // Excel
-  {
-    path: '/excel',
-    name: 'Excel',
-    component: Layout,
-    meta: { title: 'Excel', icon: 'el-icon-document' }
   },
   {
     path: '/error',
@@ -164,7 +146,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://github.com/Luciel641/vue-admin',
-        meta: { title: '外链', icon: 'el-icon-share' }
+        meta: { title: '项目地址', icon: 'el-icon-share' }
       }
     ]
   },
