@@ -1,10 +1,10 @@
 <template>
-  <div>富文本编辑器</div>
+  <div>DashboardUser</div>
 </template>
 
 <script>
 export default {
-  name: 'RichTextEditor'
+  name: 'DashboardUser'
 }
 </script>
 

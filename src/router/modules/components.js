@@ -11,7 +11,7 @@ const componentsRouter = {
     {
       path: 'rich-text-editor',
       name: 'RichTextEditor',
-      component: () => import('@/views/rich-text-editor'),
+      component: () => import('@/views/components-demo/rich-text-editor'),
       meta: { title: '富文本编辑器' }
     },
     {
@@ -21,14 +21,16 @@ const componentsRouter = {
       meta: { title: '头像上传' }
     },
     {
-      path: 'file-upload',
-      name: 'FileUpload',
-      meta: { title: '文件上传' }
+      path: 'count-to',
+      name: 'CountToDemo',
+      component: () => import('@/views/components-demo/count-to'),
+      meta: { title: '数字滚动' }
     },
     {
       path: 'clipboard',
       name: 'Clipboard',
-      meta: { title: '剪切板' }
+      component: () => import('@/views/components-demo/clipboard'),
+      meta: { title: '剪贴板' }
     }
   ]
 }

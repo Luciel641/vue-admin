@@ -25,6 +25,7 @@ export default {
   overflow: hidden;
   width: 100%;
   height: 100%;
+  padding: 100px 0;
   background-color: #fff;
 }
 .err-container {
@@ -32,7 +33,6 @@ export default {
 }
 .err-msg {
   margin: 0 auto;
-  padding-top: 100px;
   color: #354053;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
 }

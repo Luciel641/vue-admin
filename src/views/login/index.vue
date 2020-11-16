@@ -82,12 +82,10 @@ export default {
                 type: 'success',
                 duration: 1500
               })
-              console.log('即将跳转： ', this.$route.query.redirect)
               this.$router.push(this.$route.query.redirect || '/')
             })
             .catch(error => {
               this.loading = false
-              console.log('login error', error)
             })
         } else {
           return false

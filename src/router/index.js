@@ -104,16 +104,30 @@ export const asyncRoutes = [
   // 图表
   {
     path: '/charts',
-    name: 'Charts',
     component: Layout,
-    meta: { title: '图表', icon: 'el-icon-s-marketing' }
+    redirect: '/charts/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Charts',
+        component: () => import('@/views/charts'),
+        meta: { title: '图表', icon: 'el-icon-s-marketing' }
+      }
+    ]
   },
   // 表格
   {
     path: '/table',
-    name: 'Table',
     component: Layout,
-    meta: { title: '表格', icon: 'el-icon-s-grid' }
+    redirect: '/table/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Table',
+        component: () => import('@/views/table'),
+        meta: { title: '表格', icon: 'el-icon-s-grid' }
+      }
+    ]
   },
   // Excel
   {
@@ -144,6 +158,16 @@ export const asyncRoutes = [
     ]
   },
   NavTest,
+  {
+    path: '/external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://github.com/Luciel641/vue-admin',
+        meta: { title: '外链', icon: 'el-icon-share' }
+      }
+    ]
+  },
   // 404 页面必须放在最后面！！！
   { path: '*', redirect: '/404', hidden: true }
 ]

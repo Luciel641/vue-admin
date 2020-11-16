@@ -39,7 +39,6 @@ const actions = {
       login(formData)
         .then(res => {
           const { data } = res
-          // console.log('登录结果：', data)
           commit('SET_TOKEN', data.token)
           resolve(data)
         })
@@ -70,7 +69,6 @@ const actions = {
   },
   // 退出登录
   logout({ commit }, redirect) {
-    console.log('登出')
     localStorage.removeItem('token')
     commit('RESET_STATE')
     resetRouter()
