@@ -5,11 +5,12 @@ module.exports = [
     type: 'post',
     response: config => {
       const body = config.body
+      const data = body || {
+        url: '/avatar/avatar_user.jpg'
+      }
       return {
         code: 0,
-        data: {
-          url: '/avatar/avatar_user.jpg'
-        }
+        data: data
       }
     }
   }

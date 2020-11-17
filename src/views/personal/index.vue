@@ -75,14 +75,13 @@ export default {
     ...mapGetters(['avatar'])
   },
   methods: {
-    uploadSuccess({ url, cropUrl }) {
-      this.avatarUrl = url
-      this.$store.commit('user/SET_AVATAR', cropUrl)
+    uploadSuccess({ url }) {
+      this.$store.commit('user/SET_AVATAR', url)
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$message.success('提交成功')
+          this.$message.success('提交成功（结果仅为模拟）')
         } else {
           return false
         }

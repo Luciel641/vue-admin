@@ -1,5 +1,6 @@
 <template>
   <el-dialog
+    v-if="src"
     title="图片裁剪"
     :visible.sync="isVisible"
     width="460px"
@@ -31,7 +32,7 @@ export default {
   components: { VueCropper },
   props: {
     ...VueCropper.props,
-    visible: {
+    showCropper: {
       type: Boolean,
       default: true
     }
@@ -42,19 +43,23 @@ export default {
   computed: {
     isVisible: {
       get() {
-        return this.visible
+        return this.showCropper
       },
       set(val) {
-        this.$emit('update:visible', val)
+        this.$emit('update:showCropper', val)
       }
     }
   },
   watch: {
     src(url) {
       // 替换裁剪的图片
-      this.$nextTick(() => {
-        this.$refs.cropper.replace(url)
-      })
+      if (this.$refs.cropper) {
+        this.$nextTick(() => {
+          console.log('cropper: ', this.$refs.cropper)
+          console.log('url: ', url)
+          this.$refs.cropper.replace(url)
+        })
+      }
     }
   },
   methods: {
@@ -90,5 +95,6 @@ export default {
 .cropper {
   width: 300px;
   height: 200px;
+  overflow: hidden;
 }
 </style>

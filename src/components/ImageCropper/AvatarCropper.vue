@@ -29,7 +29,7 @@
     <image-cropper
       ref="avatarCropper"
       :src="imageUrl"
-      :visible.sync="showCropper"
+      :show-cropper.sync="showCropper"
       preview=".preview"
       :view-mode="1"
       drag-mode="move"
@@ -83,16 +83,6 @@ export default {
       cropBlob: null // 裁剪后的图片的blob
     }
   },
-  computed: {
-    isVisible: {
-      get() {
-        return this.visible
-      },
-      set(val) {
-        this.$emit('update:visible', val)
-      }
-    }
-  },
   methods: {
     handleChange(file, fileList) {
       if (file.status == 'ready') {
@@ -101,8 +91,8 @@ export default {
         const isLt2M = raw.size / 1024 / 1024 < 2
         if (isImage && isLt2M) {
           this.fileList = fileList.slice(-1)
-          this.imageUrl = URL.createObjectURL(file.raw)
-          this.showCropper = true // 显示图片裁剪框
+          // 这里不要使用 URL.createObjectURL(file.raw) ，cropper.js和moc.js这样使用会报错
+          this.setImageUrl(raw)
         } else if (!isImage) {
           this.$message.error('上传头像图片只能是 JPG/PNG 格式!')
         } else if (!isLt2M) {
@@ -125,21 +115,33 @@ export default {
         this.$message.error('请选择图片')
         return false
       }
-      const formData = new FormData()
-      formData.append(
-        'image',
-        this.cropBlob,
-        this.fileList[0].name.split('.')[0].jpg
-      )
-      formData.append('url', this.cropUrl)
+      // const formData = new FormData()
+      // formData.append(
+      //   'image',
+      //   this.cropBlob,
+      //   this.fileList[0].name.split('.')[0].jpg
+      // )
+      // formData.append('url', this.cropUrl)
+      // 用mock.js模拟数据，仅测试时使用，实际生产环境需修改代码
+      const formData = {
+        url: this.cropUrl
+      }
       uploadImage(formData).then(res => {
         this.fileList = []
         this.$emit('upload-success', {
-          url: res.data.url,
-          cropUrl: this.cropUrl
+          url: res.data.url
         })
-        this.$message.success('上传成功')
+        this.$message.success('上传成功（结果仅为模拟）')
       })
+    },
+    // 设置图片
+    setImageUrl(file) {
+      const fr = new FileReader()
+      fr.onload = e => {
+        this.imageUrl = e.target.result
+        this.showCropper = true // 显示图片裁剪框
+      }
+      fr.readAsDataURL(file)
     }
   }
 }
