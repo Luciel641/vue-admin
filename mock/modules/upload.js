@@ -6,7 +6,7 @@ module.exports = [
     response: config => {
       const body = config.body
       const data = body || {
-        url: '/avatar/avatar_user.jpg'
+        url: './avatar/avatar_user.jpg'
       }
       return {
         code: 0,
